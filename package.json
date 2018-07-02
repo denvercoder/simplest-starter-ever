@@ -6,6 +6,9 @@
 		"build": "webpack --config webpack/webpack.config.prod.js  --colors",
 		"dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
 	},
+	"bin": {
+		"simple-react-app": "./bin/sra.js"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/denvercoder/simplest-starter-ever.git"
