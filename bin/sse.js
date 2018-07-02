@@ -8,6 +8,7 @@ const { exec } = require('child_process')
 const packageJson = require('../package.json')
 
 const scripts = `"build": "webpack --config webpack.config.prod.js  --colors",
+	"prebuild" : "rm -rf public && mkdir public",
     "dev": "webpack-dev-server --open --config webpack.config.dev.js",
     "test": "jest"`
 
