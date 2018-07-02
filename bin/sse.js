@@ -8,7 +8,30 @@ const { exec } = require('child_process');
 const packageJson = require('../package.json');
 
 const scripts = `"start": "cross-env NODE_ENV=development webpack-dev-server -d",
-    "build": "cross-env NODE_ENV=production webpack -p"`;
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "test": "jest"`;
+
+const jestConfig = `"license": "ISC",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/tests/setup.js"
+    ],
+    "moduleNameMapper": {
+      "\\\\.(css|styl|less|sass|scss)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\\\.js$": "babel-jest",
+      "^.+\\\\.jsx$": "babel-jest",
+      "\\\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mock__/fileTransformer.js"
+    }
+  }`;
 
 /**
  * we pass the object key dependency || devdependency to this function
