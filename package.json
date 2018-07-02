@@ -7,7 +7,7 @@
 		"dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
 	},
 	"bin": {
-		"simple-react-app": "./bin/sra.js"
+		"simplest-starter-ever": "./bin/sse.js"
 	},
 	"repository": {
 		"type": "git",
