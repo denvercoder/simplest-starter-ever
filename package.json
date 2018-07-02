@@ -15,28 +15,13 @@
 	},
 	"keywords": [
 		"webpack",
-		"startkit",
-		"frontend",
 		"es6",
 		"javascript"
 	],
-	"author": "webkid.io",
+	"author": "denvercoder",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/denvercoder/simplest-starter-ever.git/issues"
-	},
-	"eslintConfig": {
-		"env": {
-			"browser": true,
-			"node": true
-		},
-		"parserOptions": {
-			"ecmaVersion": 6,
-			"sourceType": "module"
-		},
-		"rules": {
-			"semi": 2
-		}
 	},
 	"babel": {
 		"presets": [
@@ -46,14 +31,11 @@
 	"homepage": "https://github.com/denvercoder/simplest-starter-ever.git#readme",
 	"devDependencies": {
 		"babel-core": "^6.26.3",
-		"babel-eslint": "^8.2.2",
 		"babel-loader": "^7.1.4",
 		"babel-preset-es2015": "^6.24.1",
 		"clean-webpack-plugin": "^0.1.19",
 		"copy-webpack-plugin": "^4.5.1",
 		"css-loader": "^0.28.11",
-		"eslint": "^4.19.1",
-		"eslint-loader": "^2.0.0",
 		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^1.1.11",
 		"html-webpack-plugin": "^3.2.0",
