@@ -7,31 +7,9 @@ const { exec } = require('child_process');
 
 const packageJson = require('../package.json');
 
-const scripts = `"start": "cross-env NODE_ENV=development webpack-dev-server -d",
-    "build": "cross-env NODE_ENV=production webpack -p",
+const scripts = `"build": "webpack --config webpack/webpack.config.prod.js  --colors",
+    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
     "test": "jest"`;
-
-const jestConfig = `"license": "ISC",
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/tests/setup.js"
-    ],
-    "moduleNameMapper": {
-      "\\\\.(css|styl|less|sass|scss)$": "identity-obj-proxy"
-    },
-    "transform": {
-      "^.+\\\\.js$": "babel-jest",
-      "^.+\\\\.jsx$": "babel-jest",
-      "\\\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mock__/fileTransformer.js"
-    }
-  }`;
 
 /**
  * we pass the object key dependency || devdependency to this function
@@ -70,19 +48,19 @@ exec(
 			fs.writeFile(packageJSON, data, err2 => err2 || true);
 		});
 
-		const filesToCopy = [
-			'README.md',
-			'webpack/polyfills.js',
-			'webpack/webpack.common.js',
-			'webpack.config.dev.js',
-			'webpack.config.prod.js',
-		];
+		// const filesToCopy = [
+		// 	'README.md',
+		// 	'webpack/polyfills.js',
+		// 	'webpack/webpack.common.js',
+		// 	'webpack.config.dev.js',
+		// 	'webpack.config.prod.js',
+		// ];
 
-		for (let i = 0; i < filesToCopy.length; i += 1) {
-			fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
-				fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
-			);
-		}
+		// for (let i = 0; i < filesToCopy.length; i += 1) {
+		// 	fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
+		// 		fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
+		// 	);
+		// }
 
 		https.get(
 			'https://raw.githubusercontent.com/denvercoder/simplest-starter-ever/master/.gitignore',
