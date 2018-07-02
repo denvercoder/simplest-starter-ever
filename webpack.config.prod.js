@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
-const Webpack = require('webpack');
-const Path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ExtractSASS = new ExtractTextPlugin('styles/bundle.css');
+const merge = require('webpack-merge')
+const common = require('./webpack.common.js')
+const Webpack = require('webpack')
+const Path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractSASS = new ExtractTextPlugin('styles/bundle.css')
 
 module.exports = merge(common, {
 	mode: 'production',
@@ -25,7 +25,7 @@ module.exports = merge(common, {
 	],
 	resolve: {
 		alias: {
-			'~': Path.resolve(__dirname, '../src'),
+			'~': Path.resolve(__dirname, './src'),
 		},
 	},
 	module: {
@@ -41,4 +41,4 @@ module.exports = merge(common, {
 			},
 		],
 	},
-});
+})

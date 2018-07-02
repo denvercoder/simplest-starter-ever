@@ -8,9 +8,7 @@ const { exec } = require('child_process')
 const packageJson = require('../package.json')
 
 const scripts = `"build": "webpack --config webpack.config.prod.js  --colors",
-	"prebuild" : "rm -rf public && mkdir public",
-    "dev": "webpack-dev-server --open --config webpack.config.dev.js",
-    "test": "jest"`
+    "dev": "webpack-dev-server --open --config webpack.config.dev.js"`
 
 /**
  * we pass the object key dependency || devdependency to this function
@@ -32,7 +30,7 @@ console.log('Initializing project..')
 
 // create folder and initialize npm
 exec(
-	`mkdir ${process.argv[2]} && mkdir ${'public'} && cd ${process.argv[2]} && npm init -f`,
+	`mkdir ${process.argv[2]} && cd ${process.argv[2]} && mkdir ${'public'} && npm init -f`,
 	(initErr, initStdout, initStderr) => {
 		if (initErr) {
 			console.error(`Everything was fine, then it wasn't:
