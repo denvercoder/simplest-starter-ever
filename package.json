@@ -1,6 +1,6 @@
 {
 	"name": "simplest-starter-ever",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A light webpack starter for frontend projects.",
 	"scripts": {
 		"build": "webpack --config webpack.config.prod.js  --colors",
