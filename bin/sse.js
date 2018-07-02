@@ -7,8 +7,8 @@ const { exec } = require('child_process');
 
 const packageJson = require('../package.json');
 
-const scripts = `"build": "webpack --config webpack/webpack.config.prod.js  --colors",
-    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+const scripts = `"build": "webpack --config webpack.config.prod.js  --colors",
+    "dev": "webpack-dev-server --open --config webpack.config.dev.js",
     "test": "jest"`;
 
 /**
@@ -48,19 +48,19 @@ exec(
 			fs.writeFile(packageJSON, data, err2 => err2 || true);
 		});
 
-		// const filesToCopy = [
-		// 	'README.md',
-		// 	'webpack/polyfills.js',
-		// 	'webpack/webpack.common.js',
-		// 	'webpack.config.dev.js',
-		// 	'webpack.config.prod.js',
-		// ];
+		const filesToCopy = [
+			'README.md',
+			'polyfills.js',
+			'webpack.common.js',
+			'webpack.config.dev.js',
+			'webpack.config.prod.js',
+		];
 
-		// for (let i = 0; i < filesToCopy.length; i += 1) {
-		// 	fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
-		// 		fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
-		// 	);
-		// }
+		for (let i = 0; i < filesToCopy.length; i += 1) {
+			fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
+				fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
+			);
+		}
 
 		https.get(
 			'https://raw.githubusercontent.com/denvercoder/simplest-starter-ever/master/.gitignore',
