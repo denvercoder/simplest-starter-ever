@@ -7,6 +7,9 @@ const { exec } = require('child_process');
 
 const packageJson = require('../package.json');
 
+const scripts = `"start": "cross-env NODE_ENV=development webpack-dev-server -d",
+    "build": "cross-env NODE_ENV=production webpack -p"`;
+
 /**
  * we pass the object key dependency || devdependency to this function
  * @param {object} deps object key that we want to extract
@@ -33,6 +36,29 @@ exec(
 			console.error(`Everything was fine, then it wasn't:
     ${initErr}`);
 			return;
+		}
+		const packageJSON = `${process.argv[2]}/package.json`;
+		// replace the default scripts, with the webpack scripts in package.json
+		fs.readFile(packageJSON, (err, file) => {
+			if (err) throw err;
+			const data = file
+				.toString()
+				.replace('"test": "echo \\"Error: no test specified\\" && exit 1"', scripts);
+			fs.writeFile(packageJSON, data, err2 => err2 || true);
+		});
+
+		const filesToCopy = [
+			'README.md',
+			'webpack/polyfills.js',
+			'webpack/webpack.common.js',
+			'webpack.config.dev.js',
+			'webpack.config.prod.js',
+		];
+
+		for (let i = 0; i < filesToCopy.length; i += 1) {
+			fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
+				fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
+			);
 		}
 
 		https.get(
